@@ -1,0 +1,22 @@
+[I 2022-10-31 10:05:14.918 ServerApp] jupyterlab | extension was successfully linked.
+[I 2022-10-31 10:05:14.929 ServerApp] nbclassic | extension was successfully linked.
+[I 2022-10-31 10:05:14.968 LabApp] JupyterLab extension loaded from /data/projects/fate/env/python/venv/lib/python3.8/site-packages/jupyterlab
+[I 2022-10-31 10:05:14.968 LabApp] JupyterLab application directory is /data/projects/fate/env/python/venv/share/jupyter/lab
+[I 2022-10-31 10:05:14.971 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2022-10-31 10:05:14.975 ServerApp] nbclassic | extension was successfully loaded.
+[I 2022-10-31 10:05:14.975 ServerApp] Serving notebooks from local directory: /data/projects/fate
+[I 2022-10-31 10:05:14.975 ServerApp] Jupyter Server 1.21.0 is running at:
+[I 2022-10-31 10:05:14.975 ServerApp] http://ba9123c5c7b2:8888/lab?token=a694c7815108dd15f74685a0fffc16c54f28f2000f2c6654
+[I 2022-10-31 10:05:14.975 ServerApp]  or http://127.0.0.1:8888/lab?token=a694c7815108dd15f74685a0fffc16c54f28f2000f2c6654
+[I 2022-10-31 10:05:14.975 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2022-10-31 10:05:14.978 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-1840-open.html
+    Or copy and paste one of these URLs:
+        http://ba9123c5c7b2:8888/lab?token=a694c7815108dd15f74685a0fffc16c54f28f2000f2c6654
+     or http://127.0.0.1:8888/lab?token=a694c7815108dd15f74685a0fffc16c54f28f2000f2c6654
+[W 2022-10-31 10:05:42.069 LabApp] Could not determine jupyterlab build status without nodejs
+[W 2022-10-31 10:05:43.230 ServerApp] 404 GET /api/contents/Test.ipynb?content=0&1667210742825 (172.17.0.1): file or directory does not exist: 'Test.ipynb'
+[W 2022-10-31 10:05:43.231 ServerApp] wrote error: "file or directory does not exist: 'Test.ipynb'"
+[W 2022-10-31 10:05:43.231 ServerApp] 404 GET /api/contents/Test.ipynb?content=0&1667210742825 (172.17.0.1) 3.28ms referer=http://127.0.0.1:8888/lab
