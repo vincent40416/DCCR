@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title>Document</title>
+</head>
+<style>
+     *{
+        margin:0;
+        box-sizing: border-box;
+    }
+    html,
+    body,
+    #app {
+        height: 100%;
+    }
+    body{
+        background: url('./4.jpg') no-repeat ;
+        background-size: 100% 100%;
+    }
+    #app {
+        padding: 10px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+        clear: both
+    }
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .search{
+        position: absolute;
+        right: 30px;
+        top: 56%;
+    }
+    .box-card{
+        position:relative;
+        
+    }
+    .item1{
+        margin-right: 5px;
+        width: 120px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <el-card class="box-card">
+            <div slot="header" class="header">
+                <span>DCCR</span>
+                <div style="display:flex;align-items: center; justify-content: space-around;">
+                    <el-button class="item1">去中心化评级</el-button>
+                    <el-input class="item1" placeholder=""></el-input>
+                    <el-input class='item1' placeholder=""></el-input>
+                </div>
+            </div>
+                <el-form style="width:90%;display: flex; flex-wrap: wrap;" label-position="top" :inline="true">
+                    <el-form-item style="flex:15%;" v-for="(item,index) in keys" :label="item">
+                        <el-input v-model="form[item]" placeholder=""></el-input>
+                    </el-form-item>
+                </el-form>
+                <el-button class="search" type="primary" @click="search">评级查询</el-button>    
+        </el-card>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/xlsx/dist/xlsx.mini.min.js"></script>
+<script type="module">
+    const keys = [
+        '流动比率',
+        '速动比率',
+        '现金比率',
+        '应收账款周转天数',
+        '净利润率',
+        '税前利润率',
+        '毛利率',
+        '营业利益率',
+        '资产收益率',
+        '已动用资本回报率',
+        '净资产收益率',
+        '资金周转率',
+        '固定资产周转率',
+        '负债股权比率',
+        '资产负债率',
+        '年末所得税率',
+        '每股自由现金流',
+        '每股现金流',
+        '权益乘数',
+        '息税前利润率',
+        '企业价值倍数',
+        '每股经营现金净流量',
+        '经营现金流量比率',
+        '应付账款周转率',
+    ]
+    const vm = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                form:{},
+                // 当前页码
+                currentPage: 1,
+                // 总数量
+                total: 0,
+                // 总页数
+                pageCount: 1,
+                // 每页数量
+                pageSize: 10,
+                keys,
+                code: '',
+                tableData: [],
+                tableDataFilter: [],
+                tableDataFilterPage: [],
+            }
+        },
+        mounted: async function () {
+            const f = await (await fetch("https://www.javalover.cc/upload/2022/11/Corporate%20Credit%20Rating.xlsx")).arrayBuffer();
+            const wb = XLSX.read(f);
+            const data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+            console.log(data);
+            this.tableData = data;
+        },
+        methods: {
+            search: function () {
+                location.href='./output.html'
+            },
+            prev() {
+                if (this.currentPage > 1) {
+                    this.currentPage--
+                }
+            },
+            next() {
+                if (this.currentPage < this.pageCount) {
+                    this.currentPage++
+                }
+            },
+            update(e) {
+                this.currentPage = e
+                console.log('currentPage:', this.currentPage);
+                this.tableDataFilterPage = this.tableDataFilter.slice((this.currentPage - 1) * this.pageSize, (this.currentPage - 1) * this.pageSize + this.pageSize)
+            },
+            tableRowClassName({ row, rowIndex }) {
+                if (rowIndex === 1) {
+                    return 'warning-row';
+                } else if (rowIndex === 3) {
+                    return 'success-row';
+                }
+                return '';
+            }
+        }
+    })
+</script>
+
+</html>
